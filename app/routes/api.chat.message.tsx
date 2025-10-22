@@ -2,6 +2,7 @@ import type { ActionFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import db from "../db.server";
 import { generateAIResponse, analyzeSentiment } from "../services/ai.server";
+import { logger } from "../utils/logger.server";
 
 export async function action({ request }: ActionFunctionArgs) {
   // CORS is handled by server.mjs global middleware
@@ -13,21 +14,21 @@ export async function action({ request }: ActionFunctionArgs) {
       // Try to clone and get text first to log it
       const clonedRequest = request.clone();
       const text = await clonedRequest.text();
-      console.log("📨 Raw request body:", text);
+      logger.debug("📨 Raw request body:", text);
       
       // Now parse the original request
       body = text ? JSON.parse(text) : {};
-      console.log("📦 Parsed body:", JSON.stringify(body));
+      logger.debug("📦 Parsed body:", JSON.stringify(body));
     } catch (parseError) {
-      console.error("❌ Failed to parse request body:", parseError);
+      logger.error("❌ Failed to parse request body:", parseError);
       return json({ error: "Invalid JSON", details: parseError.message }, { status: 400 });
     }
 
     const { message, shop, customer, sessionId } = body;
-    console.log("✅ Extracted fields:", { message, shop, hasCustomer: !!customer, sessionId });
+    logger.debug("✅ Extracted fields:", { message, shop, hasCustomer: !!customer, sessionId });
 
     if (!message || !shop) {
-      console.error("❌ Missing required fields:", { message: !!message, shop: !!shop });
+      logger.error("❌ Missing required fields:", { message: !!message, shop: !!shop });
       return json({ 
         error: "Missing required fields",
         details: { messageProvided: !!message, shopProvided: !!shop }

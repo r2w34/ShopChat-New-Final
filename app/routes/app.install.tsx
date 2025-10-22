@@ -21,12 +21,21 @@ import { authenticate } from "../shopify.server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const { session } = await authenticate.admin(request);
-  
-  return json({
-    shop: session.shop,
-    apiKey: process.env.SHOPIFY_API_KEY,
-  });
+  try {
+    const { session } = await authenticate.admin(request);
+    
+    return json({
+      shop: session.shop,
+      apiKey: process.env.SHOPIFY_API_KEY,
+    });
+  } catch (error) {
+    console.error('Install page error:', error);
+    return json({ 
+      error: 'Failed to load installation page',
+      shop: '',
+      apiKey: '',
+    }, { status: 500 });
+  }
 }
 
 export default function InstallWidgetPage() {

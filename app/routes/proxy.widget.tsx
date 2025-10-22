@@ -15,7 +15,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   const shop = window.Shopify ? window.Shopify.shop : '';
   const config = {
-    apiUrl: 'https://shopchatai.indigenservices.com',
+    apiUrl: 'https://shopchat-new.indigenservices.com',
     shop: shop,
     primaryColor: '#5C6AC4',
     accentColor: '#00848E',
@@ -145,7 +145,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
     }
   });
 
-  console.log('✅ AI Chat Widget loaded via App Proxy');
+  // Only log in development mode
+  if (window.location.hostname === 'localhost' || window.location.hostname.includes('dev')) {
+    console.log('✅ AI Chat Widget loaded via App Proxy');
+  }
 })();
 </script>
 `;

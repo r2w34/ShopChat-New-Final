@@ -33,10 +33,16 @@ export async function action({ request }: ActionFunctionArgs) {
       let deletedMessages = 0;
       let deletedSessions = 0;
       let deletedFAQs = 0;
+      let deletedAnalytics = 0;
+      let deletedAutomations = 0;
 
-      // 1. Delete all chat messages
+      // 1. Delete all chat messages (must be first due to foreign keys)
       const messagesResult = await db.chatMessage.deleteMany({
-        where: { storeId: store.id },
+        where: { 
+          session: {
+            storeId: store.id
+          }
+        },
       });
       deletedMessages = messagesResult.count;
 
@@ -52,7 +58,29 @@ export async function action({ request }: ActionFunctionArgs) {
       });
       deletedFAQs = faqsResult.count;
 
-      // 4. Delete store record
+      // 4. Delete analytics
+      const analyticsResult = await db.analytics.deleteMany({
+        where: { storeId: store.id },
+      });
+      deletedAnalytics = analyticsResult.count;
+
+      // 5. Delete automations
+      const automationsResult = await db.automation.deleteMany({
+        where: { storeId: store.id },
+      });
+      deletedAutomations = automationsResult.count;
+
+      // 6. Delete chat settings
+      await db.chatSettings.deleteMany({
+        where: { storeId: store.id },
+      });
+
+      // 7. Delete subscriptions
+      await db.subscription.deleteMany({
+        where: { storeId: store.id },
+      });
+
+      // 8. Delete store record (must be last)
       await db.store.delete({
         where: { id: store.id },
       });
@@ -63,6 +91,8 @@ export async function action({ request }: ActionFunctionArgs) {
         messagesDeleted: deletedMessages,
         sessionsDeleted: deletedSessions,
         faqsDeleted: deletedFAQs,
+        analyticsDeleted: deletedAnalytics,
+        automationsDeleted: deletedAutomations,
       });
     }
 

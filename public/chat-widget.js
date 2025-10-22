@@ -118,7 +118,10 @@
         });
 
         this.socket.on('connect', () => {
-          console.log('Socket connected');
+          // Socket connected - development logging only
+          if (window.location.hostname === 'localhost' || window.location.hostname.includes('dev')) {
+            console.log('Socket connected');
+          }
         });
 
         this.socket.on('message', (data) => {
@@ -134,7 +137,10 @@
         });
 
         this.socket.on('disconnect', () => {
-          console.log('Socket disconnected');
+          // Socket disconnected - development logging only
+          if (window.location.hostname === 'localhost' || window.location.hostname.includes('dev')) {
+            console.log('Socket disconnected');
+          }
         });
       } catch (error) {
         console.error('Socket connection failed:', error);

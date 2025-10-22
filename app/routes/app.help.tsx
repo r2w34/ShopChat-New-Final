@@ -22,13 +22,23 @@ import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  await authenticate.admin(request);
-  
-  return json({
-    supportEmail: "support@indigenservices.com",
-    documentationUrl: "https://shopchatai.indigenservices.com/app/help",
-    videoTutorialsUrl: "https://www.youtube.com/@shopchatai",
-  });
+  try {
+    await authenticate.admin(request);
+    
+    return json({
+      supportEmail: "support@indigenservices.com",
+      documentationUrl: "https://shopchat-new.indigenservices.com/app/help",
+      videoTutorialsUrl: "https://www.youtube.com/@shopchatai",
+    });
+  } catch (error) {
+    console.error('Help page error:', error);
+    return json({ 
+      error: 'Failed to load help page',
+      supportEmail: "support@indigenservices.com",
+      documentationUrl: "https://shopchat-new.indigenservices.com/app/help",
+      videoTutorialsUrl: "https://www.youtube.com/@shopchatai",
+    }, { status: 500 });
+  }
 };
 
 export default function HelpPage() {
@@ -167,12 +177,12 @@ export default function HelpPage() {
                   </Link>
                 </List.Item>
                 <List.Item>
-                  <Link url="https://shopchatai.indigenservices.com/app/help" external>
+                  <Link url="https://shopchat-new.indigenservices.com/app/help" external>
                     Community Forum
                   </Link>
                 </List.Item>
                 <List.Item>
-                  <Link url="https://shopchatai.indigenservices.com" external>
+                  <Link url="https://shopchat-new.indigenservices.com" external>
                     Service Status
                   </Link>
                 </List.Item>
