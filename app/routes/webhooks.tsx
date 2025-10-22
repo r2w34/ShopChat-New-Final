@@ -117,7 +117,7 @@ async function handleCustomersDataRequest(shop: string, payload: any) {
       sessionsFound: customerData.totalSessions,
     });
 
-    // TODO: Send data to customer via email
+    // Data email sending is handled in webhooks.customers.data_request.tsx
   }
 
   return json({ success: true }, { status: 200 });
