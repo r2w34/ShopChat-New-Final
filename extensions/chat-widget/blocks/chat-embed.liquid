@@ -45,7 +45,9 @@
 
 <script>
   (function() {
-    console.log('🤖 AI Chat Widget: Initializing...');
+    // Only log in development mode
+    var isDev = window.location.hostname === 'localhost' || window.location.hostname.includes('.myshopify.com');
+    if (isDev) console.log('🤖 AI Chat Widget: Initializing...');
     
     window.AIChatConfig = {
       apiUrl: {{ block.settings.api_url | default: "https://shopchatai.indigenservices.com" | json }},
@@ -63,16 +65,17 @@
       welcomeMessage: {{ block.settings.welcome_message | default: "Hi! How can I help you today?" | json }}
     };
     
-    console.log('✅ AI Chat Config:', window.AIChatConfig);
+    if (isDev) console.log('✅ AI Chat Config:', window.AIChatConfig);
     
     var script = document.createElement('script');
     script.src = window.AIChatConfig.apiUrl + '/widget-loader.js';
     script.async = true;
     script.defer = true;
     script.onload = function() {
-      console.log('✅ Widget script loaded');
+      if (isDev) console.log('✅ Widget script loaded');
     };
     script.onerror = function() {
+      // Always log errors
       console.error('❌ Failed to load widget script');
     };
     document.body.appendChild(script);
