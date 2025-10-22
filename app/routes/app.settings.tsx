@@ -54,13 +54,23 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { session } = await authenticate.admin(request);
 
   try {
-    const store = await prisma.store.findUnique({
+    // Find or create store
+    let store = await prisma.store.findUnique({
       where: { shopDomain: session.shop },
       include: { chatSettings: true },
     });
 
+    // Auto-create store if it doesn't exist
     if (!store) {
-      return json({ error: 'Store not found' }, { status: 404 });
+      console.log(`Creating store record for: ${session.shop}`);
+      store = await prisma.store.create({
+        data: {
+          shopDomain: session.shop,
+          shopName: session.shop.replace('.myshopify.com', ''),
+          isActive: true,
+        },
+        include: { chatSettings: true },
+      });
     }
 
     // Create default settings if they don't exist

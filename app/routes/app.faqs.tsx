@@ -54,7 +54,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     const category = url.searchParams.get('category');
     const search = url.searchParams.get('search');
 
-    const store = await prisma.store.findUnique({
+    // Find or create store
+    let store = await prisma.store.findUnique({
       where: { shopDomain: session.shop },
       include: {
         faqs: {
@@ -73,8 +74,19 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
     });
 
+    // Auto-create store if it doesn't exist
     if (!store) {
-      return json({ error: 'Store not found' }, { status: 404 });
+      console.log(`Creating store record for: ${session.shop}`);
+      store = await prisma.store.create({
+        data: {
+          shopDomain: session.shop,
+          shopName: session.shop.replace('.myshopify.com', ''),
+          isActive: true,
+        },
+        include: {
+          faqs: true,
+        },
+      });
     }
 
     return json<LoaderData>({
