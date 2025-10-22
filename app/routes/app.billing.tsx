@@ -203,14 +203,32 @@ export async function loader({ request }: LoaderFunctionArgs) {
       });
     }
 
-    const store = await db.store.findUnique({
+    // Find or create store
+    let store = await db.store.findUnique({
       where: { shopDomain: session.shop },
       select: { 
         plan: true, 
-        billingStatus: true,
         shopDomain: true,
+        subscriptionStatus: true,
       },
     });
+
+    // Auto-create store if it doesn't exist
+    if (!store) {
+      console.log(`Creating store record for: ${session.shop}`);
+      store = await db.store.create({
+        data: {
+          shopDomain: session.shop,
+          shopName: session.shop.replace('.myshopify.com', ''),
+          isActive: true,
+        },
+        select: { 
+          plan: true, 
+          shopDomain: true,
+          subscriptionStatus: true,
+        },
+      });
+    }
 
     // Check active subscriptions via GraphQL
     const activeSubscriptionsQuery = `
@@ -235,7 +253,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
     return json({
       currentPlan: store?.plan || 'free',
-      billingStatus: store?.billingStatus || 'active',
+      billingStatus: store?.subscriptionStatus || 'inactive',
       shop: store?.shopDomain || session.shop,
       activeSubscriptions,
       justApproved: !!planParam,

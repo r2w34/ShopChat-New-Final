@@ -25,9 +25,22 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const { session } = await authenticate.admin(request);
 
   try {
-    const store = await db.store.findUnique({
+    // Find or create store
+    let store = await db.store.findUnique({
       where: { shopDomain: session.shop },
     });
+
+    // Auto-create store if it doesn't exist
+    if (!store) {
+      console.log(`Creating store record for: ${session.shop}`);
+      store = await db.store.create({
+        data: {
+          shopDomain: session.shop,
+          shopName: session.shop.replace('.myshopify.com', ''),
+          isActive: true,
+        },
+      });
+    }
 
     const totalChats = await db.chatMessage.count({
       where: { storeId: store?.id },
