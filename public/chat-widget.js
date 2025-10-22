@@ -28,6 +28,7 @@
       this.socket = null;
       this.isOpen = false;
       this.unreadCount = 0;
+      this.userInfo = null;
 
       this.config = {
         position: this.widget.dataset.position || 'bottom-right',
@@ -38,8 +39,8 @@
         showOrderTracking: this.widget.dataset.showOrderTracking === 'true',
         enableSound: this.widget.dataset.enableSound === 'true',
         shop: this.widget.dataset.shop,
-        customerEmail: this.widget.dataset.customerEmail || `guest_${Date.now()}@temp.com`,
-        customerName: this.widget.dataset.customerName || 'Guest',
+        customerEmail: this.widget.dataset.customerEmail || null,
+        customerName: this.widget.dataset.customerName || null,
       };
 
       this.init();
@@ -61,12 +62,33 @@
         btn.addEventListener('click', (e) => this.handleQuickAction(e));
       });
 
-      // Create session and connect
-      await this.createSession();
-      this.connectSocket();
+      // Check if user info exists
+      const savedUserInfo = localStorage.getItem('ai_chat_user_info');
+      if (savedUserInfo) {
+        this.userInfo = JSON.parse(savedUserInfo);
+        this.config.customerEmail = this.userInfo.email;
+        this.config.customerName = this.userInfo.name;
+      }
 
-      // Load from localStorage if exists
-      this.loadSession();
+      // Check if chat was open before refresh
+      const wasOpen = localStorage.getItem('ai_chat_is_open');
+      if (wasOpen === 'true') {
+        this.open();
+      }
+
+      // Load session from localStorage
+      const savedSessionId = localStorage.getItem('ai_chat_session');
+      if (savedSessionId) {
+        this.sessionId = savedSessionId;
+      }
+
+      // Create session and connect if user info exists
+      if (this.userInfo) {
+        await this.createSession();
+        this.connectSocket();
+        // Load from localStorage if exists
+        this.loadSession();
+      }
     }
 
     async createSession() {
@@ -161,19 +183,26 @@
       this.isOpen = true;
       this.unreadCount = 0;
       this.updateBadge();
-      this.input.focus();
       
-      // Mark as opened in localStorage
-      localStorage.setItem('ai_chat_opened', 'true');
+      // Save open state
+      localStorage.setItem('ai_chat_is_open', 'true');
       
-      // Scroll to bottom
-      this.scrollToBottom();
+      // Show lead form if user info doesn't exist
+      if (!this.userInfo) {
+        this.showLeadForm();
+      } else {
+        this.input.focus();
+        this.scrollToBottom();
+      }
     }
 
     close() {
       this.window.style.display = 'none';
       this.button.setAttribute('aria-expanded', 'false');
       this.isOpen = false;
+      
+      // Save closed state
+      localStorage.setItem('ai_chat_is_open', 'false');
     }
 
     async handleSubmit(e) {
@@ -363,6 +392,138 @@
       // Fill input and submit
       this.input.value = query;
       this.handleSubmit(new Event('submit'));
+    }
+
+    showLeadForm() {
+      // Clear messages area and show lead form
+      this.messages.innerHTML = '';
+      
+      const formContainer = document.createElement('div');
+      formContainer.className = 'ai-chat-lead-form';
+      formContainer.style.cssText = `
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        height: 100%;
+      `;
+
+      const header = document.createElement('div');
+      header.innerHTML = `
+        <div style="text-align: center; margin-bottom: 16px;">
+          <h3 style="margin: 0 0 8px; font-size: 20px; color: #1f2937;">👋 Welcome!</h3>
+          <p style="margin: 0; font-size: 14px; color: #6b7280;">Let's get started. Please tell us about yourself.</p>
+        </div>
+      `;
+
+      const form = document.createElement('form');
+      form.id = 'ai-chat-lead-capture-form';
+      form.style.cssText = 'display: flex; flex-direction: column; gap: 14px; flex: 1;';
+      
+      // Name field
+      const nameGroup = this.createFormField('Name *', 'text', 'name', 'Enter your full name', true);
+      
+      // Email field  
+      const emailGroup = this.createFormField('Email *', 'email', 'email', 'your.email@example.com', true);
+      
+      // Phone field
+      const phoneGroup = this.createFormField('Phone *', 'tel', 'phone', '+1 (555) 123-4567', true);
+
+      const submitBtn = document.createElement('button');
+      submitBtn.type = 'submit';
+      submitBtn.textContent = 'Start Chat';
+      submitBtn.style.cssText = `
+        padding: 14px 24px;
+        background: ${this.config.primaryColor};
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: auto;
+      `;
+
+      submitBtn.onmouseover = () => {
+        submitBtn.style.transform = 'translateY(-2px)';
+        submitBtn.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+      };
+      submitBtn.onmouseout = () => {
+        submitBtn.style.transform = 'translateY(0)';
+        submitBtn.style.boxShadow = 'none';
+      };
+
+      form.appendChild(nameGroup);
+      form.appendChild(emailGroup);
+      form.appendChild(phoneGroup);
+      form.appendChild(submitBtn);
+
+      form.onsubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+
+        if (!name || !email || !phone) {
+          alert('Please fill in all required fields');
+          return;
+        }
+
+        // Save user info
+        this.userInfo = { name, email, phone };
+        this.config.customerEmail = email;
+        this.config.customerName = name;
+        localStorage.setItem('ai_chat_user_info', JSON.stringify(this.userInfo));
+
+        // Remove form
+        formContainer.remove();
+
+        // Create session and start chat
+        await this.createSession();
+        this.connectSocket();
+        this.input.focus();
+      };
+
+      formContainer.appendChild(header);
+      formContainer.appendChild(form);
+      this.messages.appendChild(formContainer);
+    }
+
+    createFormField(label, type, name, placeholder, required) {
+      const group = document.createElement('div');
+      group.style.cssText = 'display: flex; flex-direction: column; gap: 6px;';
+      
+      const labelEl = document.createElement('label');
+      labelEl.textContent = label;
+      labelEl.style.cssText = 'font-size: 13px; font-weight: 600; color: #374151;';
+      
+      const input = document.createElement('input');
+      input.type = type;
+      input.name = name;
+      input.placeholder = placeholder;
+      input.required = required;
+      input.style.cssText = `
+        padding: 12px 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.2s;
+      `;
+      
+      input.onfocus = () => {
+        input.style.borderColor = this.config.primaryColor;
+        input.style.boxShadow = `0 0 0 3px ${this.config.primaryColor}20`;
+      };
+      input.onblur = () => {
+        input.style.borderColor = '#d1d5db';
+        input.style.boxShadow = 'none';
+      };
+      
+      group.appendChild(labelEl);
+      group.appendChild(input);
+      return group;
     }
 
     showTyping(isTyping) {
