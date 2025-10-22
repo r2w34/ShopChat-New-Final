@@ -1,0 +1,37 @@
+{
+  "name": "AI Chat Widget",
+  "settings": {
+    "api_url": {
+      "label": "API URL",
+      "info": "The URL of your chat API server. Do not change unless instructed."
+    },
+    "position": {
+      "label": "Widget position",
+      "info": "Where the chat button appears on your store",
+      "options__1": {
+        "label": "Bottom Right"
+      },
+      "options__2": {
+        "label": "Bottom Left"
+      },
+      "options__3": {
+        "label": "Top Right"
+      },
+      "options__4": {
+        "label": "Top Left"
+      }
+    },
+    "primary_color": {
+      "label": "Primary color",
+      "info": "Main color for the chat widget"
+    },
+    "accent_color": {
+      "label": "Accent color",
+      "info": "Accent color for buttons and highlights"
+    },
+    "welcome_message": {
+      "label": "Welcome message",
+      "info": "First message customers see when opening the chat"
+    }
+  }
+}

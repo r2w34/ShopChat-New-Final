@@ -1,0 +1,80 @@
+{% comment %}
+  AI Chat Widget - App Embed Block
+  Loads a floating chat widget on all storefront pages
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "AI Chat Widget",
+  "target": "body",
+  "settings": [
+    {
+      "type": "text",
+      "id": "api_url",
+      "label": "API URL",
+      "default": "https://shopchatai.indigenservices.com",
+      "info": "Do not change unless instructed"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "default": "bottom-right",
+      "options": [
+        { "value": "bottom-right", "label": "Bottom Right" },
+        { "value": "bottom-left", "label": "Bottom Left" },
+        { "value": "top-right", "label": "Top Right" },
+        { "value": "top-left", "label": "Top Left" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary Color",
+      "default": "#5C6AC4"
+    },
+    {
+      "type": "text",
+      "id": "welcome_message",
+      "label": "Welcome Message",
+      "default": "Hi! How can I help you today?"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  (function() {
+    console.log('🤖 AI Chat Widget: Initializing...');
+    
+    window.AIChatConfig = {
+      apiUrl: {{ block.settings.api_url | default: "https://shopchatai.indigenservices.com" | json }},
+      shop: {{ shop.permanent_domain | json }},
+      {% if customer %}
+      customer: {
+        email: {{ customer.email | json }},
+        name: {{ customer.name | json }},
+        id: {{ customer.id | json }}
+      },
+      {% endif %}
+      primaryColor: {{ block.settings.primary_color | default: "#5C6AC4" | json }},
+      accentColor: "#00848E",
+      position: {{ block.settings.position | default: "bottom-right" | json }},
+      welcomeMessage: {{ block.settings.welcome_message | default: "Hi! How can I help you today?" | json }}
+    };
+    
+    console.log('✅ AI Chat Config:', window.AIChatConfig);
+    
+    var script = document.createElement('script');
+    script.src = window.AIChatConfig.apiUrl + '/widget-loader.js';
+    script.async = true;
+    script.defer = true;
+    script.onload = function() {
+      console.log('✅ Widget script loaded');
+    };
+    script.onerror = function() {
+      console.error('❌ Failed to load widget script');
+    };
+    document.body.appendChild(script);
+  })();
+</script>

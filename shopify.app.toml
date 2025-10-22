@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "cd129da562757dce12515300f4dc8fbb"
+name = "ShopChat AI Chatbot"
+application_url = "https://shopchatai.indigenservices.com"
+embedded = true
+
+[webhooks]
+api_version = "2025-10"
+
+  [[webhooks.subscriptions]]
+  compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
+  uri = "https://shopchatai.indigenservices.com/webhooks"
+
+[access_scopes]
+scopes = "read_analytics,write_checkouts,read_checkouts,read_customers,write_customers,read_price_rules,write_price_rules,read_discounts,write_discounts,write_inventory,read_inventory,read_locales,write_marketing_events,read_marketing_events,read_merchant_managed_fulfillment_orders,write_merchant_managed_fulfillment_orders,read_online_store_pages,write_online_store_pages,read_orders,write_orders,read_products,write_products,read_script_tags,write_script_tags,read_shipping,write_shipping,read_content,write_content,read_themes,write_themes,read_translations,write_translations"
+optional_scopes = [ ]
+use_legacy_install_flow = false
+
+[auth]
+redirect_urls = [
+  "https://shopchatai.indigenservices.com/auth/callback",
+  "https://shopchatai.indigenservices.com/auth/shopify/callback",
+  "https://shopchatai.indigenservices.com/api/auth/callback"
+]
+
+[pos]
+embedded = true
