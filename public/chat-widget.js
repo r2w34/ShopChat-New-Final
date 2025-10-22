@@ -98,10 +98,14 @@
           this.addMessage('bot', data.data.welcomeMessage, {
             timestamp: new Date().toISOString(),
           });
+          
+          // Show quick suggestions
+          this.showQuickSuggestions();
         }
       } catch (error) {
         console.error('Failed to create session:', error);
         this.addMessage('bot', this.config.welcomeMessage);
+        this.showQuickSuggestions();
       }
     }
 
@@ -279,6 +283,86 @@
 
       // Save to localStorage
       this.saveMessage({ sender, text, metadata, timestamp: new Date().toISOString() });
+    }
+
+    showQuickSuggestions() {
+      // Remove any existing suggestions first
+      const existing = document.querySelector('.ai-chat-suggestions');
+      if (existing) existing.remove();
+
+      const suggestions = [
+        { icon: '🛍️', text: 'Show me products', query: 'Can you show me your products?' },
+        { icon: '📦', text: 'Track my order', query: 'I want to track my order' },
+        { icon: '❓', text: 'I have a question', query: 'I have a question about your products' },
+        { icon: '💬', text: 'Speak to someone', query: 'I need to speak to a human agent' }
+      ];
+
+      const container = document.createElement('div');
+      container.className = 'ai-chat-suggestions';
+      container.style.cssText = `
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px 16px;
+        margin: 0 12px;
+        background: #f9fafb;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      `;
+
+      suggestions.forEach(suggestion => {
+        const btn = document.createElement('button');
+        btn.className = 'ai-chat-suggestion-btn';
+        btn.innerHTML = `${suggestion.icon} ${suggestion.text}`;
+        btn.style.cssText = `
+          flex: 1 1 calc(50% - 4px);
+          min-width: 140px;
+          padding: 10px 14px;
+          background: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 6px;
+          font-size: 13px;
+          cursor: pointer;
+          transition: all 0.2s;
+          text-align: left;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          color: #374151;
+        `;
+        
+        btn.onmouseover = () => {
+          btn.style.background = this.config.primaryColor;
+          btn.style.color = 'white';
+          btn.style.borderColor = this.config.primaryColor;
+          btn.style.transform = 'translateY(-2px)';
+          btn.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        };
+        
+        btn.onmouseout = () => {
+          btn.style.background = 'white';
+          btn.style.color = '#374151';
+          btn.style.borderColor = '#e5e7eb';
+          btn.style.transform = 'translateY(0)';
+          btn.style.boxShadow = 'none';
+        };
+        
+        btn.onclick = () => {
+          this.handleQuickReply(suggestion.query);
+          container.remove(); // Remove suggestions after selection
+        };
+
+        container.appendChild(btn);
+      });
+
+      this.messages.appendChild(container);
+      this.scrollToBottom();
+    }
+
+    handleQuickReply(query) {
+      // Fill input and submit
+      this.input.value = query;
+      this.handleSubmit(new Event('submit'));
     }
 
     showTyping(isTyping) {
