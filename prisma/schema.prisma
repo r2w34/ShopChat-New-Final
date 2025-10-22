@@ -83,23 +83,48 @@ model ChatSession {
   id                String   @id @default(cuid())
   storeId           String
   store             Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  
+  // Customer Info
   customerId        String?
   customerEmail     String?
   customerName      String?
+  customerPhone     String?
+  
   sessionToken      String   @unique
   startedAt         DateTime @default(now())
   endedAt           DateTime?
-  status            String   @default("active")
+  
+  // Status Management for Live Agent
+  status            String   @default("active") // 'active', 'needs_agent', 'agent_takeover', 'resolved'
+  assignedAgentId   String?
+  assignedAgentName String?
+  takenOverAt       DateTime?
+  
+  // Analytics
   channel           String   @default("widget")
   language          String   @default("en")
-  sentiment         String?
+  sentiment         String?  // 'positive', 'neutral', 'negative'
   satisfactionScore Int?
+  
+  // AI Performance
+  aiHandled         Boolean  @default(true)
+  aiConfidence      Float?
+  
+  // Business Outcomes
+  productsViewed    String?  // JSON: array of product IDs
+  productsRecommended String? // JSON: array of recommended product IDs
+  addedToCart       Boolean  @default(false)
+  purchaseMade      Boolean  @default(false)
+  orderValue        Float?
+  
   messages          ChatMessage[]
   metadata          String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
   @@index([storeId, customerId])
+  @@index([storeId, status])
+  @@index([assignedAgentId])
   @@index([sessionToken])
 }
 
@@ -108,18 +133,35 @@ model ChatMessage {
   id            String      @id @default(cuid())
   sessionId     String
   session       ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  sender        String
+  
+  sender        String      // 'CUSTOMER', 'AI', 'AGENT', 'SYSTEM'
   message       String
-  messageType   String      @default("text")
+  messageType   String      @default("text") // 'text', 'product', 'system', 'image'
   isAI          Boolean     @default(false)
+  
+  // AI Metadata
   intent        String?
-  entities      String?
+  entities      String?     // JSON: extracted entities
   confidence    Float?
+  
+  // Product Recommendations
+  recommendedProducts String? // JSON: array of {id, title, price, image, url}
+  
+  // Agent Metadata
+  agentId       String?
+  agentName     String?
+  
+  // Read Status
+  readByCustomer Boolean    @default(false)
+  readByAgent    Boolean    @default(false)
+  
   attachments   String?
   metadata      String?
   sentAt        DateTime    @default(now())
 
   @@index([sessionId])
+  @@index([sender])
+  @@index([agentId])
 }
 
 // FAQ Management
