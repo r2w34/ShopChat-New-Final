@@ -222,6 +222,7 @@
       // Send via socket if available, otherwise use HTTP
       if (this.socket && this.socket.connected) {
         this.socket.emit('message', {
+          shop: this.config.shop,
           sessionId: this.sessionId,
           message: message,
         });
@@ -238,6 +239,7 @@
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            shop: this.config.shop,
             sessionId: this.sessionId,
             message: message,
             customerEmail: this.config.customerEmail,
