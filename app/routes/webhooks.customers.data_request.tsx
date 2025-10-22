@@ -2,6 +2,7 @@ import type { ActionFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 import db from "../db.server";
+import { getEmailService } from "../services/email.server";
 
 /**
  * GDPR Compliance: Customer Data Request
@@ -63,8 +64,20 @@ export async function action({ request }: ActionFunctionArgs) {
         messagesFound: customerData.totalMessages,
       });
 
-      // TODO: In production, send this data to the customer via email
-      // For now, log it for compliance purposes
+      // Send customer data via email
+      if (payload.customer?.email) {
+        const emailService = getEmailService();
+        const emailSent = await emailService.sendCustomerDataEmail(
+          payload.customer.email,
+          customerData
+        );
+        
+        if (emailSent) {
+          console.log("✅ Customer data email sent to:", payload.customer.email);
+        } else {
+          console.warn("⚠️ Failed to send customer data email (data logged for compliance)");
+        }
+      }
     }
 
     // Must respond with 200 status to acknowledge receipt

@@ -10,7 +10,7 @@
 ShopChat AI is a fully functional Shopify app providing AI-powered chat support for e-commerce stores. The application is currently deployed and operational on production servers with all critical features working correctly.
 
 ### Key Highlights
-- ✅ **Production Server**: Live at https://shopchatai.indigenservices.com
+- ✅ **Production Server**: Live at https://shopchat-new.indigenservices.com
 - ✅ **Chat Widget**: Fixed auto-open issue, now opens only on click
 - ✅ **Shopify Integration**: OAuth, webhooks, and API fully integrated
 - ✅ **AI Service**: Google Gemini API for intelligent responses
@@ -24,7 +24,7 @@ ShopChat AI is a fully functional Shopify app providing AI-powered chat support 
 ### Server Details
 ```
 IP Address: 72.60.99.154
-Domain: https://shopchatai.indigenservices.com
+Domain: https://shopchat-new.indigenservices.com
 OS: Ubuntu Linux
 Access: ssh root@72.60.99.154
 Password: Kalilinux@2812
@@ -78,7 +78,7 @@ ssh root@72.60.99.154 'grep "display: none" /var/www/shopify-ai-chatbot/public/w
 # Result: ✅ Confirmed
 
 # Live URL check
-curl https://shopchatai.indigenservices.com/widget-loader.js | grep "display: none"
+curl https://shopchat-new.indigenservices.com/widget-loader.js | grep "display: none"
 # Result: ✅ Confirmed
 ```
 
@@ -249,7 +249,7 @@ POST /api/install-widget
 **Method 2: Manual (Theme)**
 ```html
 <!-- Add to theme.liquid before </body> -->
-<script src="https://shopchatai.indigenservices.com/widget-loader.js"></script>
+<script src="https://shopchat-new.indigenservices.com/widget-loader.js"></script>
 ```
 
 ---
@@ -505,22 +505,22 @@ sqlite3 data/production.sqlite "SELECT COUNT(*) FROM Store;"
 ### Test Widget
 ```bash
 # Check widget file is served
-curl -I https://shopchatai.indigenservices.com/widget-loader.js
+curl -I https://shopchat-new.indigenservices.com/widget-loader.js
 # Should return: 200 OK
 
 # Check widget content
-curl https://shopchatai.indigenservices.com/widget-loader.js | grep "display: none"
+curl https://shopchat-new.indigenservices.com/widget-loader.js | grep "display: none"
 # Should show: line with display: none
 ```
 
 ### Test API
 ```bash
 # Health check
-curl https://shopchatai.indigenservices.com/health
+curl https://shopchat-new.indigenservices.com/health
 # Should return: {"status":"ok","timestamp":"..."}
 
 # Socket.IO status
-curl https://shopchatai.indigenservices.com/socket/status
+curl https://shopchat-new.indigenservices.com/socket/status
 # Should return: {"status":"running","activeConnections":...}
 ```
 
@@ -538,11 +538,11 @@ Password: Kalilinux@2812
 
 ### Application URLs
 ```
-Production: https://shopchatai.indigenservices.com
+Production: https://shopchat-new.indigenservices.com
 Admin: Via Shopify Partners dashboard
-Widget Loader: https://shopchatai.indigenservices.com/widget-loader.js
-Widget CSS: https://shopchatai.indigenservices.com/chat-widget.css
-Embed Script: https://shopchatai.indigenservices.com/embed.js
+Widget Loader: https://shopchat-new.indigenservices.com/widget-loader.js
+Widget CSS: https://shopchat-new.indigenservices.com/chat-widget.css
+Embed Script: https://shopchat-new.indigenservices.com/embed.js
 ```
 
 ### Key Files & Directories
@@ -552,7 +552,7 @@ Database: /var/www/shopify-ai-chatbot/data/production.sqlite
 Environment: /var/www/shopify-ai-chatbot/.env
 PM2 Logs: /root/.pm2/logs/shopify-ai-chatbot-*.log
 Nginx Config: /etc/nginx/sites-available/shopchatai
-SSL Certs: /etc/letsencrypt/live/shopchatai.indigenservices.com/
+SSL Certs: /etc/letsencrypt/live/shopchat-new.indigenservices.com/
 ```
 
 ### Repository

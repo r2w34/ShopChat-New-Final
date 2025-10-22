@@ -4,7 +4,7 @@
  */
 
 export function loader() {
-  const appUrl = process.env.SHOPIFY_APP_URL || process.env.HOST || 'https://shopchatai.indigenservices.com';
+  const appUrl = process.env.SHOPIFY_APP_URL || process.env.HOST || 'https://shopchat-new.indigenservices.com';
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

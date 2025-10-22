@@ -3,7 +3,7 @@
 **Generated**: October 18, 2025, 12:18 UTC  
 **Server**: root@72.60.99.154  
 **Application**: ShopChat AI - Shopify Chatbot  
-**URL**: https://shopchatai.indigenservices.com
+**URL**: https://shopchat-new.indigenservices.com
 
 ---
 
@@ -77,7 +77,7 @@ Status: Connected and accessible
 ### 4. Environment Variables ✅
 All critical environment variables are set:
 - ✅ SHOPIFY_API_KEY
-- ✅ HOST (shopchatai.indigenservices.com)
+- ✅ HOST (shopchat-new.indigenservices.com)
 - ✅ DATABASE_URL (production.sqlite)
 - ✅ PORT (3000)
 - ✅ GEMINI_API_KEY (for AI responses)
@@ -119,7 +119,7 @@ All widget files are present and up to date:
 | embed.js | 1.4 KB | Oct 18 09:33 | ✅ |
 | widget-loader.js | 10 KB | Oct 18 09:33 | ✅ |
 
-**Configuration**: All widgets use correct API URL (https://shopchatai.indigenservices.com)
+**Configuration**: All widgets use correct API URL (https://shopchat-new.indigenservices.com)
 
 ---
 
@@ -148,7 +148,7 @@ WebSocket: ✅ Upgrade headers configured
 ```
 
 **Domains Configured**:
-- ✅ https://shopchatai.indigenservices.com
+- ✅ https://shopchat-new.indigenservices.com
 
 ---
 
@@ -290,8 +290,8 @@ pm2 status
 
 ### Check API Health
 ```bash
-curl https://shopchatai.indigenservices.com/health
-curl https://shopchatai.indigenservices.com/socket/status
+curl https://shopchat-new.indigenservices.com/health
+curl https://shopchat-new.indigenservices.com/socket/status
 ```
 
 ### View Logs

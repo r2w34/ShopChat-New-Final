@@ -17,7 +17,7 @@
   
   // Merge configuration with defaults
   const config = {
-    apiUrl: globalConfig.apiUrl || 'https://shopchatai.indigenservices.com',
+    apiUrl: globalConfig.apiUrl || 'https://shopchat-new.indigenservices.com',
     shop: globalConfig.shop || defaultShop,
     primaryColor: globalConfig.primaryColor || '#5C6AC4',
     accentColor: globalConfig.accentColor || '#00848E',

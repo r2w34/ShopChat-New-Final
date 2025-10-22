@@ -254,7 +254,7 @@ export default function PrivacyPolicy() {
         <div style={{ backgroundColor: "#f7f7f7", padding: "20px", borderRadius: "8px", marginTop: "15px" }}>
           <p><strong>ShopChat AI</strong></p>
           <p>Email: <a href="mailto:support@indigenservices.com" style={{ color: "#5C6AC4" }}>support@indigenservices.com</a></p>
-          <p>Website: <a href="https://shopchatai.indigenservices.com" style={{ color: "#5C6AC4" }}>https://shopchatai.indigenservices.com</a></p>
+          <p>Website: <a href="https://shopchat-new.indigenservices.com" style={{ color: "#5C6AC4" }}>https://shopchat-new.indigenservices.com</a></p>
         </div>
       </section>
 

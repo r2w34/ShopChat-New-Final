@@ -8,9 +8,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
     let js = await readFile(jsPath, "utf-8");
     
     // Replace localhost with actual domain
-    js = js.replace(/localhost:3000/g, "shopchatai.indigenservices.com");
-    js = js.replace(/http:\/\/twittstock/g, "https://shopchatai.indigenservices.com");
-    js = js.replace(/https:\/\/twittstock\.com/g, "https://shopchatai.indigenservices.com");
+    js = js.replace(/localhost:3000/g, "shopchat-new.indigenservices.com");
+    js = js.replace(/http:\/\/twittstock/g, "https://shopchat-new.indigenservices.com");
+    js = js.replace(/https:\/\/twittstock\.com/g, "https://shopchat-new.indigenservices.com");
     
     return new Response(js, {
       headers: {

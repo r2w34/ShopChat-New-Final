@@ -123,9 +123,11 @@ export default function LiveChatDashboard() {
   const [messageInput, setMessageInput] = useState('');
   const [isTakenOver, setIsTakenOver] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
+  const [isCustomerTyping, setIsCustomerTyping] = useState(false);
   
   const socketRef = useRef<Socket | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Socket.IO connection
   useEffect(() => {
@@ -194,7 +196,20 @@ export default function LiveChatDashboard() {
 
     // Listen for typing indicator
     socket.on('typing', ({ sessionId, userType }) => {
-      // TODO: Show typing indicator
+      // Show typing indicator for customer
+      if (sessionId === selectedSessionId && userType === 'customer') {
+        setIsCustomerTyping(true);
+        
+        // Clear existing timeout
+        if (typingTimeoutRef.current) {
+          clearTimeout(typingTimeoutRef.current);
+        }
+        
+        // Hide typing indicator after 3 seconds of inactivity
+        typingTimeoutRef.current = setTimeout(() => {
+          setIsCustomerTyping(false);
+        }, 3000);
+      }
     });
 
     return () => {
@@ -261,6 +276,24 @@ export default function LiveChatDashboard() {
     });
 
     setMessageInput('');
+    
+    // Stop typing indicator
+    socketRef.current?.emit('typing', {
+      sessionId: selectedSessionId,
+      userType: 'agent',
+      isTyping: false
+    });
+  };
+  
+  const handleTyping = () => {
+    if (!selectedSessionId) return;
+    
+    // Send typing indicator
+    socketRef.current?.emit('typing', {
+      sessionId: selectedSessionId,
+      userType: 'agent',
+      isTyping: true
+    });
   };
 
   const sendMessage = ({ text, isSystem }: { text: string; isSystem: boolean }) => {
@@ -445,6 +478,13 @@ export default function LiveChatDashboard() {
                   </div>
 
                   <Divider />
+                  
+                  {/* Typing Indicator */}
+                  {isCustomerTyping && (
+                    <div style={{ padding: '8px 16px', fontSize: '13px', color: '#6b7280', fontStyle: 'italic' }}>
+                      Customer is typing...
+                    </div>
+                  )}
 
                   {/* Input */}
                   {isTakenOver ? (
@@ -453,7 +493,10 @@ export default function LiveChatDashboard() {
                         <TextField
                           label=""
                           value={messageInput}
-                          onChange={setMessageInput}
+                          onChange={(value) => {
+                            setMessageInput(value);
+                            handleTyping();
+                          }}
                           placeholder="Type your message..."
                           autoComplete="off"
                           onKeyPress={(e) => {

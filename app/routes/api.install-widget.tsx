@@ -17,7 +17,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
     // Check if already installed
     const existingScript = response.data.find(
-      (script: any) => script.src === "https://shopchatai.indigenservices.com/embed.js"
+      (script: any) => script.src === "https://shopchat-new.indigenservices.com/embed.js"
     );
 
     if (existingScript) {
@@ -31,7 +31,7 @@ export async function action({ request }: ActionFunctionArgs) {
     // Install the script tag
     const scriptTag = new admin.rest.resources.ScriptTag({ session: session });
     scriptTag.event = "onload";
-    scriptTag.src = "https://shopchatai.indigenservices.com/widget-loader.js";
+    scriptTag.src = "https://shopchat-new.indigenservices.com/widget-loader.js";
     scriptTag.display_scope = "all";
     
     await scriptTag.save({
@@ -64,7 +64,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
     const installedScripts = response.data.filter(
       (script: any) => 
-        script.src.includes("shopchatai.indigenservices.com") ||
+        script.src.includes("shopchat-new.indigenservices.com") ||
         script.src.includes("embed.js")
     );
 

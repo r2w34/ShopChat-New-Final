@@ -45,7 +45,7 @@ Already configured with WebSocket upgrade support:
 
 ### 1. Socket.IO Status Endpoint
 ```bash
-curl https://shopchatai.indigenservices.com/socket/status
+curl https://shopchat-new.indigenservices.com/socket/status
 
 Response:
 {
@@ -58,7 +58,7 @@ Response:
 
 ### 2. Health Check Endpoint
 ```bash
-curl https://shopchatai.indigenservices.com/health
+curl https://shopchat-new.indigenservices.com/health
 
 Response:
 {
@@ -69,7 +69,7 @@ Response:
 ✅ **Working perfectly**
 
 ### 3. WebSocket Connection
-- ✅ Socket.IO client can connect to `https://shopchatai.indigenservices.com`
+- ✅ Socket.IO client can connect to `https://shopchat-new.indigenservices.com`
 - ✅ Automatic fallback from WebSocket to polling if needed
 - ✅ Connection logs visible in PM2 logs
 
@@ -84,7 +84,7 @@ Response:
 <script src="/socket.io/socket.io.js"></script>
 
 // Connect to server
-const socket = io('https://shopchatai.indigenservices.com', {
+const socket = io('https://shopchat-new.indigenservices.com', {
   transports: ['websocket', 'polling'],
   path: '/socket.io/'
 });
@@ -178,7 +178,7 @@ document.head.appendChild(socketScript);
 
 ### Check Active Connections
 ```bash
-curl https://shopchatai.indigenservices.com/socket/status
+curl https://shopchat-new.indigenservices.com/socket/status
 ```
 
 ### View Connection Logs
@@ -220,7 +220,7 @@ If you want to test WebSocket connection from browser console:
 
 ```javascript
 // Open browser console on your store
-const testSocket = io('https://shopchatai.indigenservices.com', {
+const testSocket = io('https://shopchat-new.indigenservices.com', {
   path: '/socket.io/'
 });
 
@@ -257,10 +257,10 @@ testSocket.on('disconnect', () => {
 ✅ **Recommended: Stick with current HTTP approach unless you need real-time features**
 
 **Server Endpoints:**
-- WebSocket: `wss://shopchatai.indigenservices.com/socket.io/`
-- REST API: `https://shopchatai.indigenservices.com/api/chat/message`
-- Status: `https://shopchatai.indigenservices.com/socket/status`
-- Health: `https://shopchatai.indigenservices.com/health`
+- WebSocket: `wss://shopchat-new.indigenservices.com/socket.io/`
+- REST API: `https://shopchat-new.indigenservices.com/api/chat/message`
+- Status: `https://shopchat-new.indigenservices.com/socket/status`
+- Health: `https://shopchat-new.indigenservices.com/health`
 
 ---
 

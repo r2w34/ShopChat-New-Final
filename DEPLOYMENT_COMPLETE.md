@@ -3,7 +3,7 @@
 ## 🎉 Status: FULLY OPERATIONAL
 
 Your Shopify AI Chatbot is now fully deployed and working on:
-- **Production URL**: https://shopchatai.indigenservices.com
+- **Production URL**: https://shopchat-new.indigenservices.com
 - **Store**: https://volter-store.myshopify.com
 
 ---
@@ -25,7 +25,7 @@ Your Shopify AI Chatbot is now fully deployed and working on:
 Multiple issues were resolved:
 
 #### API URL Configuration
-- Fixed all widget files to use correct API URL: `https://shopchatai.indigenservices.com`
+- Fixed all widget files to use correct API URL: `https://shopchat-new.indigenservices.com`
 - Files updated:
   - `public/embed.js`
   - `public/chat-widget.js`
@@ -118,8 +118,8 @@ Response:
 SHOPIFY_API_KEY=04c93bf898928e67c50132955f9ed710
 SHOPIFY_API_SECRET=e2421d256d502fe789b479051ff43e81
 SCOPES=read_products,write_products,read_orders,write_orders...
-HOST=https://shopchatai.indigenservices.com
-SHOPIFY_APP_URL=https://shopchatai.indigenservices.com
+HOST=https://shopchat-new.indigenservices.com
+SHOPIFY_APP_URL=https://shopchat-new.indigenservices.com
 DATABASE_URL=file:/var/www/shopify-ai-chatbot/data/production.sqlite
 NODE_ENV=production
 PORT=3000

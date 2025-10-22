@@ -41,7 +41,7 @@ This document explains how ShopChat AI integrates with Shopify using official Sh
                                ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │                    ShopChat AI Backend                               │
-│             https://shopchatai.indigenservices.com                   │
+│             https://shopchat-new.indigenservices.com                   │
 │                                                                       │
 │  ┌──────────────────────────────────────────────────────────────┐   │
 │  │  Remix App (Server-Side Rendering)                           │   │
@@ -104,7 +104,7 @@ This document explains how ShopChat AI integrates with Shopify using official Sh
 ```
 1. Merchant clicks "Install App" in Shopify App Store
    ↓
-2. Redirected to: https://shopchatai.indigenservices.com/auth/shopify
+2. Redirected to: https://shopchat-new.indigenservices.com/auth/shopify
    ↓
 3. Shopify shows permission consent screen (scopes)
    ↓
@@ -341,7 +341,7 @@ export async function action({ request }: ActionFunctionArgs) {
   
   const scriptTag = new admin.rest.resources.ScriptTag({ session });
   scriptTag.event = "onload";
-  scriptTag.src = "https://shopchatai.indigenservices.com/widget-loader.js";
+  scriptTag.src = "https://shopchat-new.indigenservices.com/widget-loader.js";
   scriptTag.display_scope = "all"; // Show on all pages
   
   await scriptTag.save({ update: true });
@@ -363,7 +363,7 @@ Merchant adds to `theme.liquid`:
     position: 'bottom-right'
   };
 </script>
-<script src="https://shopchatai.indigenservices.com/widget-loader.js"></script>
+<script src="https://shopchat-new.indigenservices.com/widget-loader.js"></script>
 ```
 
 **Reference**: https://shopify.dev/docs/apps/build/online-store
@@ -630,7 +630,7 @@ shopify app generate extension
 ### Production Checklist
 
 - [x] SSL certificate installed
-- [x] Domain configured (shopchatai.indigenservices.com)
+- [x] Domain configured (shopchat-new.indigenservices.com)
 - [x] Environment variables secured
 - [x] Database backups configured
 - [x] PM2 process manager setup

@@ -131,7 +131,7 @@ curl -X POST \
   -d '{
     "webhook": {
       "topic": "customers/data_request",
-      "address": "https://shopchatai.indigenservices.com/webhooks/customers/data_request",
+      "address": "https://shopchat-new.indigenservices.com/webhooks/customers/data_request",
       "format": "json"
     }
   }'
@@ -144,7 +144,7 @@ curl -X POST \
   -d '{
     "webhook": {
       "topic": "customers/redact",
-      "address": "https://shopchatai.indigenservices.com/webhooks/customers/redact",
+      "address": "https://shopchat-new.indigenservices.com/webhooks/customers/redact",
       "format": "json"
     }
   }'
@@ -157,7 +157,7 @@ curl -X POST \
   -d '{
     "webhook": {
       "topic": "shop/redact",
-      "address": "https://shopchatai.indigenservices.com/webhooks/shop/redact",
+      "address": "https://shopchat-new.indigenservices.com/webhooks/shop/redact",
       "format": "json"
     }
   }'

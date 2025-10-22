@@ -1,11 +1,12 @@
 FROM node:18-alpine
 RUN apk add --no-cache openssl
 
-EXPOSE 3000
+EXPOSE 3003
 
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV PORT=3003
 
 COPY package.json package-lock.json* ./
 
@@ -18,4 +19,11 @@ COPY . .
 
 RUN npm run build
 
-CMD ["npm", "run", "docker-start"]
+# Generate Prisma Client
+RUN npx prisma generate
+
+# Copy and set execution permission for startup script
+COPY docker-start.sh /app/docker-start.sh
+RUN chmod +x /app/docker-start.sh
+
+CMD ["/app/docker-start.sh"]

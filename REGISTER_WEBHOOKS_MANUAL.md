@@ -33,7 +33,7 @@ Click **"Add webhook"** or **"Configure webhooks"** button
 
 ```
 Topic: customers/data_request
-URL: https://shopchatai.indigenservices.com/webhooks/customers/data_request
+URL: https://shopchat-new.indigenservices.com/webhooks/customers/data_request
 Format: JSON
 API Version: 2025-10
 ```
@@ -46,7 +46,7 @@ Click **"Add webhook"** ✅
 
 ```
 Topic: customers/redact
-URL: https://shopchatai.indigenservices.com/webhooks/customers/redact
+URL: https://shopchat-new.indigenservices.com/webhooks/customers/redact
 Format: JSON
 API Version: 2025-10
 ```
@@ -59,7 +59,7 @@ Click **"Add webhook"** ✅
 
 ```
 Topic: shop/redact
-URL: https://shopchatai.indigenservices.com/webhooks/shop/redact
+URL: https://shopchat-new.indigenservices.com/webhooks/shop/redact
 Format: JSON
 API Version: 2025-10
 ```
@@ -76,7 +76,7 @@ These are not required for approval but improve app functionality:
 
 ```
 Topic: app/uninstalled
-URL: https://shopchatai.indigenservices.com/webhooks/app/uninstalled
+URL: https://shopchat-new.indigenservices.com/webhooks/app/uninstalled
 Format: JSON
 API Version: 2025-10
 ```
@@ -85,7 +85,7 @@ API Version: 2025-10
 
 ```
 Topic: orders/create
-URL: https://shopchatai.indigenservices.com/webhooks/orders/create
+URL: https://shopchat-new.indigenservices.com/webhooks/orders/create
 Format: JSON
 API Version: 2025-10
 ```
@@ -94,7 +94,7 @@ API Version: 2025-10
 
 ```
 Topic: orders/updated
-URL: https://shopchatai.indigenservices.com/webhooks/orders/updated
+URL: https://shopchat-new.indigenservices.com/webhooks/orders/updated
 Format: JSON
 API Version: 2025-10
 ```
@@ -103,7 +103,7 @@ API Version: 2025-10
 
 ```
 Topic: products/create
-URL: https://shopchatai.indigenservices.com/webhooks/products/create
+URL: https://shopchat-new.indigenservices.com/webhooks/products/create
 Format: JSON
 API Version: 2025-10
 ```
@@ -112,7 +112,7 @@ API Version: 2025-10
 
 ```
 Topic: products/update
-URL: https://shopchatai.indigenservices.com/webhooks/products/update
+URL: https://shopchat-new.indigenservices.com/webhooks/products/update
 Format: JSON
 API Version: 2025-10
 ```
@@ -151,10 +151,10 @@ You should see a table like this:
 
 | Topic | Endpoint | Format | Status |
 |-------|----------|--------|--------|
-| customers/data_request | https://shopchatai.indigenservices.com/webhooks/customers/data_request | JSON | Active |
-| customers/redact | https://shopchatai.indigenservices.com/webhooks/customers/redact | JSON | Active |
-| shop/redact | https://shopchatai.indigenservices.com/webhooks/shop/redact | JSON | Active |
-| app/uninstalled | https://shopchatai.indigenservices.com/webhooks/app/uninstalled | JSON | Active |
+| customers/data_request | https://shopchat-new.indigenservices.com/webhooks/customers/data_request | JSON | Active |
+| customers/redact | https://shopchat-new.indigenservices.com/webhooks/customers/redact | JSON | Active |
+| shop/redact | https://shopchat-new.indigenservices.com/webhooks/shop/redact | JSON | Active |
+| app/uninstalled | https://shopchat-new.indigenservices.com/webhooks/app/uninstalled | JSON | Active |
 | ... | ... | ... | ... |
 
 ---
@@ -213,7 +213,7 @@ Some Partners Dashboard versions allow importing configuration:
 
 ```bash
 # This won't work without valid HMAC, but tests endpoint is reachable
-curl -X POST https://shopchatai.indigenservices.com/webhooks/customers/data_request \
+curl -X POST https://shopchat-new.indigenservices.com/webhooks/customers/data_request \
   -H "Content-Type: application/json" \
   -d '{"test": true}'
 

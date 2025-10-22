@@ -1,13 +1,13 @@
 # 🚀 ShopChat AI - Shopify AI Support Chatbot
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://shopchatai.indigenservices.com)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://shopchat-new.indigenservices.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Shopify](https://img.shields.io/badge/Shopify-App-green)](https://shopify.dev)
 
 > 🤖 AI-powered customer support chatbot for Shopify stores using Google Gemini
 
 **✅ FULLY DEPLOYED AND OPERATIONAL**  
-**🌐 Live at:** [https://shopchatai.indigenservices.com](https://shopchatai.indigenservices.com)
+**🌐 Live at:** [https://shopchat-new.indigenservices.com](https://shopchat-new.indigenservices.com)
 
 ---
 
@@ -70,7 +70,7 @@
 ## 🌐 Live Deployment
 
 ### Production Environment
-- **URL:** https://shopchatai.indigenservices.com
+- **URL:** https://shopchat-new.indigenservices.com
 - **Status:** ✅ Operational
 - **Uptime:** 99.9%
 - **SSL:** Let's Encrypt (Auto-renew)
@@ -110,7 +110,7 @@
 - **Reverse Proxy:** Nginx
 - **Process Manager:** PM2
 - **SSL:** Let's Encrypt (Certbot)
-- **Domain:** shopchatai.indigenservices.com
+- **Domain:** shopchat-new.indigenservices.com
 
 ---
 
@@ -320,7 +320,7 @@ shopify webhook trigger --topic=shop/redact
 
 ### Contact
 - **Email:** support@indigenservices.com
-- **Website:** https://shopchatai.indigenservices.com
+- **Website:** https://shopchat-new.indigenservices.com
 - **Issues:** [GitHub Issues](https://github.com/r2w34/shopchat-AI-shopify/issues)
 
 ### Documentation

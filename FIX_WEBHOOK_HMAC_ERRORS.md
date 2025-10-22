@@ -483,7 +483,7 @@ pm2 logs shopify-ai-chatbot --lines 50
 ### Automated Test Process:
 
 1. **Sends test webhook to your endpoint**
-   - URL: `https://shopchatai.indigenservices.com/webhooks/customers/data_request`
+   - URL: `https://shopchat-new.indigenservices.com/webhooks/customers/data_request`
    - Headers: `X-Shopify-Hmac-Sha256`, `X-Shopify-Topic`, etc.
    - Body: Sample GDPR request
 

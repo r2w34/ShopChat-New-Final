@@ -7,8 +7,8 @@ module.exports = {
     env: {
       NODE_ENV: 'production',
       PORT: 3000,
-      HOST: 'https://shopchatai.indigenservices.com',
-      SHOPIFY_APP_URL: 'https://shopchatai.indigenservices.com',
+      HOST: 'https://shopchat-new.indigenservices.com',
+      SHOPIFY_APP_URL: 'https://shopchat-new.indigenservices.com',
       SHOPIFY_API_KEY: '04c93bf898928e67c50132955f9ed710',
       SHOPIFY_API_SECRET: 'e2421d256d502fe789b479051ff43e81',
       SCOPES: 'read_products,write_products,read_orders,write_orders,read_customers,write_customers,read_content,write_content,read_themes,write_themes,read_script_tags,write_script_tags',

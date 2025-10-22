@@ -78,7 +78,7 @@ SECURITY MEASURES:
 - Encrypted database storage
 - OAuth authentication
 - GDPR compliant (all 3 mandatory webhooks implemented)
-- Privacy Policy: https://shopchatai.indigenservices.com/privacy-policy
+- Privacy Policy: https://shopchat-new.indigenservices.com/privacy-policy
 
 API SCOPES WE USE:
 - read_customers: Access customer email, name, and basic info
@@ -213,10 +213,10 @@ How will you protect this data?
 - Privacy Policy published
 
 Privacy Policy URL:
-https://shopchatai.indigenservices.com/privacy-policy
+https://shopchat-new.indigenservices.com/privacy-policy
 
 Terms of Service URL:
-https://shopchatai.indigenservices.com/terms-of-service
+https://shopchat-new.indigenservices.com/terms-of-service
 ```
 
 ---
@@ -325,7 +325,7 @@ THIRD-PARTY:
 - Disclosed in Privacy Policy
 - Google's privacy policy applies to their processing
 
-Privacy Policy: https://shopchatai.indigenservices.com/privacy-policy
+Privacy Policy: https://shopchat-new.indigenservices.com/privacy-policy
 ```
 
 ---

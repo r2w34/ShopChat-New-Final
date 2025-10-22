@@ -114,7 +114,7 @@ button.addEventListener('click', () => {
 ### Production Verification ✅
 
 **Server**: 72.60.99.154  
-**URL**: https://shopchatai.indigenservices.com  
+**URL**: https://shopchat-new.indigenservices.com  
 **Commit**: e127778 (deployed)
 
 **Tests Performed**:
@@ -128,7 +128,7 @@ button.addEventListener('click', () => {
 
 2. ✅ **Live Widget Check**
    ```bash
-   curl https://shopchatai.indigenservices.com/widget-loader.js | grep "display: none"
+   curl https://shopchat-new.indigenservices.com/widget-loader.js | grep "display: none"
    # Result: Confirmed display: none in served file
    ```
 
@@ -206,7 +206,7 @@ pm2 restart shopify-ai-chatbot
 
 # 3. Verified deployment
 pm2 logs shopify-ai-chatbot --lines 20
-curl https://shopchatai.indigenservices.com/widget-loader.js | grep "display"
+curl https://shopchat-new.indigenservices.com/widget-loader.js | grep "display"
 ```
 
 ---

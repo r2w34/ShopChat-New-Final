@@ -1,6 +1,6 @@
 # 🧪 Comprehensive Test Report
 **Date:** October 17, 2025  
-**Environment:** Production VPS (shopchatai.indigenservices.com)  
+**Environment:** Production VPS (shopchat-new.indigenservices.com)  
 **Status:** ✅ ALL TESTS PASSED
 
 ---
@@ -34,12 +34,12 @@
 
 ### shopify.app.toml
 - ✅ client_id: `04c93bf898928e67c50132955f9ed710`
-- ✅ application_url: `https://shopchatai.indigenservices.com`
+- ✅ application_url: `https://shopchat-new.indigenservices.com`
 - ✅ Webhooks configured (4 endpoints)
 - ✅ Scopes properly defined
 
 ### Environment Variables
-- ✅ SHOPIFY_APP_URL: `https://shopchatai.indigenservices.com`
+- ✅ SHOPIFY_APP_URL: `https://shopchat-new.indigenservices.com`
 - ✅ NODE_ENV: `production`
 - ✅ PORT: `3000`
 - ✅ GEMINI_API_KEY: Configured
@@ -153,7 +153,7 @@ shopify app deploy
 
 ## 🚀 Production Status
 
-**URL:** https://shopchatai.indigenservices.com  
+**URL:** https://shopchat-new.indigenservices.com  
 **Status:** ✅ **FULLY OPERATIONAL**  
 **Repository:** https://github.com/r2w34/shopchat-AI-shopify  
 **Last Updated:** October 17, 2025  

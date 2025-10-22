@@ -20,7 +20,7 @@ Allow: /chat-widget.css
 Allow: /embed.js
 
 # Sitemap
-Sitemap: https://shopchatai.indigenservices.com/sitemap.xml
+Sitemap: https://shopchat-new.indigenservices.com/sitemap.xml
 `;
 
   return new Response(robotsTxt, {

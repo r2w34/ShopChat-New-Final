@@ -8,7 +8,7 @@
   
   // Configuration
   const config = window.AIChatConfig || {
-    apiUrl: 'https://shopchatai.indigenservices.com',
+    apiUrl: 'https://shopchat-new.indigenservices.com',
     primaryColor: '#5C6AC4',
     accentColor: '#00848E',
     position: 'bottom-right',

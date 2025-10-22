@@ -1,7 +1,7 @@
 # ShopChat AI - Complete Fix Summary
 
 ## Date: October 17, 2025
-## App URL: https://shopchatai.indigenservices.com
+## App URL: https://shopchat-new.indigenservices.com
 
 ---
 
@@ -40,7 +40,7 @@
 
 **Solution:**
 - Updated theme extension snippet
-- Changed URLs: `https://twittstock.com` → `https://shopchatai.indigenservices.com`
+- Changed URLs: `https://twittstock.com` → `https://shopchat-new.indigenservices.com`
 
 **Files Changed:**
 - `extensions/theme-extension/snippets/ai-chat-widget.liquid`
@@ -572,4 +572,4 @@ The app is now:
 **Last Updated:** October 17, 2025
 **Version:** 1.0.0
 **Environment:** Production
-**URL:** https://shopchatai.indigenservices.com
+**URL:** https://shopchat-new.indigenservices.com

@@ -10,7 +10,7 @@
 ### 1. Privacy Policy Page ✅
 
 **File**: `app/routes/privacy-policy.tsx`  
-**URL**: `https://shopchatai.indigenservices.com/privacy-policy`
+**URL**: `https://shopchat-new.indigenservices.com/privacy-policy`
 
 **Contents**:
 - ✅ Data collection disclosure
@@ -32,7 +32,7 @@
 ### 2. Terms of Service Page ✅
 
 **File**: `app/routes/terms-of-service.tsx`  
-**URL**: `https://shopchatai.indigenservices.com/terms-of-service`
+**URL**: `https://shopchat-new.indigenservices.com/terms-of-service`
 
 **Contents**:
 - ✅ Service description
@@ -205,12 +205,12 @@ Once deployed, these pages will be available at:
 
 1. **Privacy Policy**: 
    ```
-   https://shopchatai.indigenservices.com/privacy-policy
+   https://shopchat-new.indigenservices.com/privacy-policy
    ```
 
 2. **Terms of Service**:
    ```
-   https://shopchatai.indigenservices.com/terms-of-service
+   https://shopchat-new.indigenservices.com/terms-of-service
    ```
 
 Use these URLs in your Shopify App Store submission form.
@@ -246,22 +246,22 @@ Use these URLs in your Shopify App Store submission form.
 
 ```bash
 # After deployment:
-curl https://shopchatai.indigenservices.com/privacy-policy
+curl https://shopchat-new.indigenservices.com/privacy-policy
 # Should return HTML page
 
 # Or visit in browser:
-open https://shopchatai.indigenservices.com/privacy-policy
+open https://shopchat-new.indigenservices.com/privacy-policy
 ```
 
 ### How to Test Terms of Service:
 
 ```bash
 # After deployment:
-curl https://shopchatai.indigenservices.com/terms-of-service
+curl https://shopchat-new.indigenservices.com/terms-of-service
 # Should return HTML page
 
 # Or visit in browser:
-open https://shopchatai.indigenservices.com/terms-of-service
+open https://shopchat-new.indigenservices.com/terms-of-service
 ```
 
 ### How to Test Webhooks:
@@ -300,8 +300,8 @@ pm2 restart shopify-ai-chatbot
 
 ```bash
 # Check if pages load
-curl https://shopchatai.indigenservices.com/privacy-policy | grep "Privacy Policy"
-curl https://shopchatai.indigenservices.com/terms-of-service | grep "Terms of Service"
+curl https://shopchat-new.indigenservices.com/privacy-policy | grep "Privacy Policy"
+curl https://shopchat-new.indigenservices.com/terms-of-service | grep "Terms of Service"
 
 # Check logs
 pm2 logs shopify-ai-chatbot --lines 20

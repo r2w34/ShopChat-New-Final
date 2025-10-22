@@ -216,13 +216,13 @@ Add loading states for script and CSS files to improve UX:
 {% if enabled %}
 <script>
   window.AIChatConfig = {
-    apiUrl: 'https://shopchatai.indigenservices.com',
+    apiUrl: 'https://shopchat-new.indigenservices.com',
     shop: '{{ shop.permanent_domain }}',
     loading: true,
     // ... rest of config
   };
 </script>
-<script src="https://shopchatai.indigenservices.com/embed.js" 
+<script src="https://shopchat-new.indigenservices.com/embed.js" 
         defer 
         onload="window.AIChatConfig.loading = false"
         onerror="console.error('Failed to load chat widget')">

@@ -88,7 +88,7 @@ If it's MORE than 10 points, contact me and I'll optimize the widget.
 **What to include**:
 ```
 ✅ Company/App name: ShopChat AI / AI Support Chatbot
-✅ Website: https://shopchatai.indigenservices.com
+✅ Website: https://shopchat-new.indigenservices.com
 ✅ Contact email: [YOUR EMAIL]
 
 ✅ Data collected:
@@ -518,7 +518,7 @@ When you submit to Shopify App Store, you'll need:
 - [ ] GDPR compliant: **YES** (we have webhooks)
 
 ### Technical Information
-- [ ] App URL: **https://shopchatai.indigenservices.com**
+- [ ] App URL: **https://shopchat-new.indigenservices.com**
 - [ ] OAuth redirect URLs: Already configured ✅
 - [ ] Webhooks: Already configured ✅
 - [ ] API scopes: Already reduced to minimum ✅

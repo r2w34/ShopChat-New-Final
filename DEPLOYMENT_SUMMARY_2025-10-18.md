@@ -45,14 +45,14 @@ Successfully completed comprehensive code review, documentation, and bug fixes f
 - **File**: `app/routes/robots[.]txt.tsx`
 - **Purpose**: SEO optimization, prevent 404 errors
 - **Status**: Deployed and tested
-- **URL**: https://shopchatai.indigenservices.com/robots.txt
+- **URL**: https://shopchat-new.indigenservices.com/robots.txt
 - **Result**: Returns 200 OK with proper directives
 
 #### 3b. sitemap.xml Route ✅
 - **File**: `app/routes/sitemap[.]xml.tsx`
 - **Purpose**: Search engine indexing
 - **Status**: Deployed and tested
-- **URL**: https://shopchatai.indigenservices.com/sitemap.xml
+- **URL**: https://shopchat-new.indigenservices.com/sitemap.xml
 - **Result**: Returns valid XML sitemap
 
 #### 3c. Widget Embed API Route ✅
@@ -309,7 +309,7 @@ e127778 Fix: Prevent chat widget from auto-opening on page load (previous)
 - **SSH Access**: root@72.60.99.154
 - **Password**: Kalilinux@2812
 - **GitHub**: r2w34/shopchat-AI-shopify
-- **Production URL**: https://shopchatai.indigenservices.com
+- **Production URL**: https://shopchat-new.indigenservices.com
 
 **⚠️ Security Recommendations**:
 1. Change root password to stronger value
@@ -362,9 +362,9 @@ npm run build
 sqlite3 data/production.sqlite
 
 # Test routes
-curl https://shopchatai.indigenservices.com/health
-curl https://shopchatai.indigenservices.com/robots.txt
-curl https://shopchatai.indigenservices.com/sitemap.xml
+curl https://shopchat-new.indigenservices.com/health
+curl https://shopchat-new.indigenservices.com/robots.txt
+curl https://shopchat-new.indigenservices.com/sitemap.xml
 ```
 
 ### Important Files

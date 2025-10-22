@@ -62,7 +62,7 @@ If Option 1 doesn't work:
 If you have the direct install URL:
 
 ```
-https://shopchatai.indigenservices.com/auth?shop=YOUR-STORE.myshopify.com
+https://shopchat-new.indigenservices.com/auth?shop=YOUR-STORE.myshopify.com
 ```
 
 Replace `YOUR-STORE` with your actual store name.

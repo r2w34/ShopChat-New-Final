@@ -1,11 +1,11 @@
 # 🤖 ShopChat AI - Shopify Support Chatbot
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://shopchatai.indigenservices.com)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success)](https://shopchat-new.indigenservices.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 > AI-powered customer support chatbot for Shopify stores with Google Gemini integration
 
-**✅ LIVE & OPERATIONAL:** [https://shopchatai.indigenservices.com](https://shopchatai.indigenservices.com)
+**✅ LIVE & OPERATIONAL:** [https://shopchat-new.indigenservices.com](https://shopchat-new.indigenservices.com)
 
 ---
 
@@ -178,7 +178,7 @@ api_version = "2024-10"
 
 ## 🌐 Live Production
 
-**Production URL:** https://shopchatai.indigenservices.com
+**Production URL:** https://shopchat-new.indigenservices.com
 
 **Status:** ✅ Operational
 - **SSL:** Let's Encrypt (auto-renew)
@@ -201,7 +201,7 @@ api_version = "2024-10"
 ## 🤝 Support
 
 - **Email:** support@indigenservices.com
-- **Website:** https://shopchatai.indigenservices.com
+- **Website:** https://shopchat-new.indigenservices.com
 - **Issues:** [GitHub Issues](https://github.com/r2w34/shopchat-AI-shopify/issues)
 
 ---

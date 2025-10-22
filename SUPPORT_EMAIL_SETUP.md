@@ -49,14 +49,14 @@ If you already have email set up for indigenservices.com:
    
    Best regards,
    ShopChat AI Support Team
-   https://shopchatai.indigenservices.com
+   https://shopchat-new.indigenservices.com
    ```
 
 3. **Set up email signature**:
    ```
    --
    ShopChat AI Support Team
-   https://shopchatai.indigenservices.com
+   https://shopchat-new.indigenservices.com
    
    Need help? Check our docs: [YOUR HELP URL]
    ```
@@ -119,7 +119,7 @@ Best regards,
 [YOUR NAME]
 ShopChat AI Support Team
 support@indigenservices.com
-https://shopchatai.indigenservices.com
+https://shopchat-new.indigenservices.com
 ```
 
 ### Template 2: Installation Help

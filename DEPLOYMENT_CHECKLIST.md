@@ -60,7 +60,7 @@ AI Chat Widget: Ready!
 ### When You Send a Message:
 ```
 AI Chat Widget: Sending message: hello
-Sending message to: https://shopchatai.indigenservices.com/api/chat/message
+Sending message to: https://shopchat-new.indigenservices.com/api/chat/message
 Payload: {message: 'hello', shop: 'volter-store.myshopify.com'}
 Response status: 200
 Response data: {reply: "..."}
@@ -147,7 +147,7 @@ handle = "ai-chat-widget"
 - ✅ `OPTIONS /api/*` - CORS preflight configured
 
 ### Environment
-- ✅ Server: https://shopchatai.indigenservices.com
+- ✅ Server: https://shopchat-new.indigenservices.com
 - ✅ PM2: Running (PID 89735, uptime: stable)
 - ✅ Nginx: Proxying correctly
 - ✅ SSL: Valid certificate

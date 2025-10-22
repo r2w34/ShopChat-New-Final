@@ -19,7 +19,7 @@
 - ✅ **GDPR webhooks** with HMAC verification (all 3 mandatory)
 - ✅ **Privacy Policy page** (GDPR + CCPA compliant)
 - ✅ **Terms of Service page** (comprehensive legal terms)
-- ✅ **All deployed to production** (https://shopchatai.indigenservices.com)
+- ✅ **All deployed to production** (https://shopchat-new.indigenservices.com)
 
 ### 2. Documentation (100% DONE) ✅
 
@@ -38,8 +38,8 @@ Created 10 comprehensive guides:
 
 ### 3. Legal Pages (100% DONE) ✅
 
-- ✅ **Privacy Policy**: https://shopchatai.indigenservices.com/privacy-policy
-- ✅ **Terms of Service**: https://shopchatai.indigenservices.com/terms-of-service
+- ✅ **Privacy Policy**: https://shopchat-new.indigenservices.com/privacy-policy
+- ✅ **Terms of Service**: https://shopchat-new.indigenservices.com/terms-of-service
 - ✅ **Support email updated**: support@indigenservices.com
 - ✅ **Governing law**: Delaware
 - ✅ **GDPR compliant**
@@ -168,7 +168,7 @@ App Name: AI Support Chatbot
 App Handle: ai-support-chatbot
 Developer: Indigen Services
 Support Email: support@indigenservices.com
-Website: https://shopchatai.indigenservices.com
+Website: https://shopchat-new.indigenservices.com
 ```
 
 ### App Description
@@ -223,14 +223,14 @@ Enterprise Plan:
 ### Legal URLs
 
 ```
-Privacy Policy: https://shopchatai.indigenservices.com/privacy-policy
-Terms of Service: https://shopchatai.indigenservices.com/terms-of-service
+Privacy Policy: https://shopchat-new.indigenservices.com/privacy-policy
+Terms of Service: https://shopchat-new.indigenservices.com/terms-of-service
 ```
 
 ### Technical Information
 
 ```
-App URL: https://shopchatai.indigenservices.com
+App URL: https://shopchat-new.indigenservices.com
 OAuth Redirect: ✅ Already configured
 Webhooks: ✅ Already configured
 API Scopes: read_products, read_orders, read_customers, read_script_tags, write_script_tags, read_analytics

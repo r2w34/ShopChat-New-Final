@@ -44,11 +44,11 @@ Status: Synced with origin/main
 
 ### ✅ extensions/theme-extension/snippets/ai-chat-widget.liquid
 - **Status**: Synced
-- **Loads**: Widget from https://shopchatai.indigenservices.com
+- **Loads**: Widget from https://shopchat-new.indigenservices.com
 
 ### ✅ extensions/chat-widget/assets/chat-widget.js
 - **Status**: Synced
-- **API URL**: Uses global config or defaults to shopchatai.indigenservices.com
+- **API URL**: Uses global config or defaults to shopchat-new.indigenservices.com
 
 ### ✅ extensions/chat-widget/blocks/chat-widget.liquid
 - **Status**: Synced

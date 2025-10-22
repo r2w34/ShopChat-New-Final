@@ -70,7 +70,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 
     // If store not found, return generic embed code
     if (!store) {
-      const appUrl = process.env.SHOPIFY_APP_URL || process.env.HOST || 'https://shopchatai.indigenservices.com';
+      const appUrl = process.env.SHOPIFY_APP_URL || process.env.HOST || 'https://shopchat-new.indigenservices.com';
       
       return json({
         success: false,
@@ -96,7 +96,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
 
     // Store found - return shop-specific configuration
     const settings = store.chatSettings || {};
-    const appUrl = process.env.SHOPIFY_APP_URL || process.env.HOST || 'https://shopchatai.indigenservices.com';
+    const appUrl = process.env.SHOPIFY_APP_URL || process.env.HOST || 'https://shopchat-new.indigenservices.com';
     
     const config = {
       shop: store.shopDomain,

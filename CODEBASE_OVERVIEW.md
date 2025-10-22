@@ -27,7 +27,7 @@
 │  │              Nginx (Reverse Proxy)                      │    │
 │  │  - SSL/TLS Termination (Let's Encrypt)                 │    │
 │  │  - WebSocket Support                                    │    │
-│  │  - Domain: shopchatai.indigenservices.com              │    │
+│  │  - Domain: shopchat-new.indigenservices.com              │    │
 │  └─────────────────┬──────────────────────────────────────┘    │
 │                    │                                             │
 │                    ▼                                             │
@@ -416,7 +416,7 @@ Strategies:
   "scripts": [
     {
       "id": 12345,
-      "src": "https://shopchatai.indigenservices.com/widget-loader.js"
+      "src": "https://shopchat-new.indigenservices.com/widget-loader.js"
     }
   ]
 }
@@ -613,7 +613,7 @@ model OrderTracking {
     position: 'bottom-right'
   };
 </script>
-<script src="https://shopchatai.indigenservices.com/embed.js"></script>
+<script src="https://shopchat-new.indigenservices.com/embed.js"></script>
 ```
 
 **What it does**:
@@ -699,7 +699,7 @@ sendMessage()         // Send to API
 ```toml
 name = "AI Support Chatbot"
 handle = "ai-support-chatbot"
-application_url = "https://shopchatai.indigenservices.com"
+application_url = "https://shopchat-new.indigenservices.com"
 
 # Required scopes
 scopes = "write_app_proxy,read_products,write_products,read_orders,..."
@@ -783,7 +783,7 @@ const scriptTag = new admin.rest.resources.ScriptTag({
   session: session
 });
 scriptTag.event = "onload";
-scriptTag.src = "https://shopchatai.indigenservices.com/widget-loader.js";
+scriptTag.src = "https://shopchat-new.indigenservices.com/widget-loader.js";
 scriptTag.display_scope = "all"; // Show on all pages
 await scriptTag.save();
 ```
@@ -791,7 +791,7 @@ await scriptTag.save();
 **Manual Installation** (Theme):
 ```liquid
 <!-- Add to theme.liquid before </body> -->
-<script src="https://shopchatai.indigenservices.com/widget-loader.js"></script>
+<script src="https://shopchat-new.indigenservices.com/widget-loader.js"></script>
 ```
 
 ### App Proxy
@@ -899,7 +899,7 @@ try {
 ```
 Server: 72.60.99.154
 OS: Ubuntu Linux
-Domain: shopchatai.indigenservices.com
+Domain: shopchat-new.indigenservices.com
 SSL: Let's Encrypt (auto-renewed)
 ```
 
@@ -924,7 +924,7 @@ module.exports = {
     env: {
       NODE_ENV: 'production',
       PORT: 3000,
-      HOST: 'https://shopchatai.indigenservices.com',
+      HOST: 'https://shopchat-new.indigenservices.com',
       // ... other env vars
     }
   }]
@@ -961,11 +961,11 @@ pm2 monit
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
-    server_name shopchatai.indigenservices.com;
+    server_name shopchat-new.indigenservices.com;
 
     # SSL Configuration
-    ssl_certificate /etc/letsencrypt/live/shopchatai.indigenservices.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/shopchatai.indigenservices.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/shopchat-new.indigenservices.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/shopchat-new.indigenservices.com/privkey.pem;
 
     # Proxy to Node.js app
     location / {
@@ -993,7 +993,7 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name shopchatai.indigenservices.com;
+    server_name shopchat-new.indigenservices.com;
     return 301 https://$server_name$request_uri;
 }
 ```
@@ -1005,12 +1005,12 @@ server {
 ```bash
 NODE_ENV=production
 PORT=3000
-HOST=https://shopchatai.indigenservices.com
+HOST=https://shopchat-new.indigenservices.com
 
 # Shopify
 SHOPIFY_API_KEY=04c93bf898928e67c50132955f9ed710
 SHOPIFY_API_SECRET=e2421d256d502fe789b479051ff43e81
-SHOPIFY_APP_URL=https://shopchatai.indigenservices.com
+SHOPIFY_APP_URL=https://shopchat-new.indigenservices.com
 SCOPES=read_products,write_products,read_orders,...
 
 # Database
@@ -1244,7 +1244,7 @@ App Directory: /var/www/shopify-ai-chatbot
 
 ### Live Application
 ```
-URL: https://shopchatai.indigenservices.com
+URL: https://shopchat-new.indigenservices.com
 Admin: Access via Shopify Partners dashboard
 ```
 

@@ -186,13 +186,84 @@ export class AISalesAgent {
    */
   private async findRelevantProducts(query: string, storeId: string): Promise<Product[]> {
     try {
-      // For now, return empty array - will integrate Shopify API later
-      // TODO: Implement actual Shopify product search
-      return [];
+      // Get store to access Shopify
+      const store = await prisma.store.findUnique({
+        where: { id: storeId },
+        select: { shopDomain: true, accessToken: true }
+      });
+
+      if (!store || !store.accessToken) {
+        console.warn('[AI Sales Agent] Store not found or no access token');
+        return [];
+      }
+
+      // Search products using Shopify Admin API
+      // Extract keywords from query
+      const keywords = this.extractSearchKeywords(query);
+      if (keywords.length === 0) return [];
+
+      // Build search query
+      const searchQuery = keywords.join(' OR ');
+      
+      // Simple REST API call to search products
+      const response = await fetch(
+        `https://${store.shopDomain}/admin/api/2024-01/products.json?` +
+        `limit=5&` +
+        `fields=id,title,body_html,variants,images,handle&` +
+        `title=${encodeURIComponent(keywords[0])}`,
+        {
+          headers: {
+            'X-Shopify-Access-Token': store.accessToken,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      if (!response.ok) {
+        console.error('[AI Sales Agent] Shopify API error:', response.statusText);
+        return [];
+      }
+
+      const data = await response.json();
+      const products = data.products || [];
+
+      // Transform to our Product format
+      return products.slice(0, 3).map((p: any) => ({
+        id: p.id.toString(),
+        title: p.title,
+        description: p.body_html?.replace(/<[^>]*>/g, '').substring(0, 200) || '',
+        price: p.variants?.[0]?.price || '0.00',
+        compareAtPrice: p.variants?.[0]?.compare_at_price,
+        images: p.images?.map((img: any) => img.src) || [],
+        url: `https://${store.shopDomain}/products/${p.handle}`,
+        available: p.variants?.[0]?.inventory_quantity > 0,
+        variants: p.variants?.slice(0, 3).map((v: any) => ({
+          id: v.id.toString(),
+          title: v.title,
+          price: v.price,
+          available: v.inventory_quantity > 0
+        })) || []
+      }));
+
     } catch (error) {
       console.error('[AI Sales Agent] Error finding products:', error);
       return [];
     }
+  }
+
+  /**
+   * Extract search keywords from user query
+   */
+  private extractSearchKeywords(query: string): string[] {
+    // Remove common words and extract meaningful keywords
+    const stopWords = ['a', 'an', 'the', 'is', 'are', 'was', 'were', 'i', 'you', 'me', 'my', 'your', 'can', 'could', 'would', 'should', 'do', 'does', 'did', 'looking', 'for', 'want', 'need', 'show', 'find'];
+    
+    const words = query.toLowerCase()
+      .replace(/[^a-z0-9\s]/g, '')
+      .split(/\s+/)
+      .filter(word => word.length > 2 && !stopWords.includes(word));
+
+    return words.slice(0, 3); // Return top 3 keywords
   }
 
   /**

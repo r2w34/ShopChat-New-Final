@@ -3,7 +3,7 @@
 ## 🎉 Successfully Fixed and Deployed
 
 **Date**: October 17, 2025  
-**App URL**: https://shopchatai.indigenservices.com  
+**App URL**: https://shopchat-new.indigenservices.com  
 **Repository**: r2w34/shopchat-AI-shopify
 
 ---
@@ -32,7 +32,7 @@
 
 **Fix Applied**:
 - Updated `extensions/theme-extension/snippets/ai-chat-widget.liquid`
-- Changed all URLs from `https://twittstock.com` → `https://shopchatai.indigenservices.com`
+- Changed all URLs from `https://twittstock.com` → `https://shopchat-new.indigenservices.com`
 
 ---
 
@@ -64,14 +64,14 @@ pm2 restart shopify-ai-chatbot
 ### Shopify App Details
 - **App Name**: AI-Chat
 - **App Handle**: ai-support-chatbot-14
-- **App URL**: https://shopchatai.indigenservices.com
+- **App URL**: https://shopchat-new.indigenservices.com
 - **Embedded in Admin**: ✅ Yes
 - **Embedded in POS**: ✅ Yes
 
 ### Redirect URLs
-- `https://shopchatai.indigenservices.com/auth/callback`
-- `https://shopchatai.indigenservices.com/auth/shopify/callback`
-- `https://shopchatai.indigenservices.com/api/auth/callback`
+- `https://shopchat-new.indigenservices.com/auth/callback`
+- `https://shopchat-new.indigenservices.com/auth/shopify/callback`
+- `https://shopchat-new.indigenservices.com/api/auth/callback`
 
 ### API Scopes
 Read & Write access to:
@@ -151,7 +151,7 @@ Use the admin panel at `/app/install` which provides automatic installation via 
 - [x] SSL certificate active (Let's Encrypt)
 
 ### 🔍 To Be Tested by User
-- [ ] Access install page via https://shopchatai.indigenservices.com/app/install
+- [ ] Access install page via https://shopchat-new.indigenservices.com/app/install
 - [ ] Click "Install Widget" button from dashboard
 - [ ] Enable widget via Theme Customizer
 - [ ] Test chat widget on storefront
@@ -175,7 +175,7 @@ Memory: ~100MB
 ```
 ✅ Server started on http://localhost:3000
    Environment: production
-   Shopify App URL: https://shopchatai.indigenservices.com
+   Shopify App URL: https://shopchat-new.indigenservices.com
 ```
 
 ### Nginx Status

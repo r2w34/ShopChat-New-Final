@@ -10,7 +10,7 @@
 
 ### ✅ All Systems Operational
 
-- ✅ **Server**: Running on https://shopchatai.indigenservices.com
+- ✅ **Server**: Running on https://shopchat-new.indigenservices.com
 - ✅ **Database**: SQLite connected (180KB, 12 tables)
 - ✅ **AI**: Google Gemini 2.0 Flash configured
 - ✅ **Widget**: Deployed and working on storefront
@@ -25,18 +25,18 @@
 
 ### Server Details
 - **Host**: 72.60.99.154
-- **Domain**: https://shopchatai.indigenservices.com
+- **Domain**: https://shopchat-new.indigenservices.com
 - **Port**: 3000 (internal), 443 (external via Nginx)
 - **Process Manager**: PM2
 - **Process Name**: shopify-ai-chatbot
 - **Status**: Online, stable
 
 ### Application URLs
-- **Admin App**: https://shopchatai.indigenservices.com
-- **Widget API**: https://shopchatai.indigenservices.com/api/chat/message
-- **Widget Loader**: https://shopchatai.indigenservices.com/widget-loader.js
-- **Health Check**: https://shopchatai.indigenservices.com/health
-- **Socket Status**: https://shopchatai.indigenservices.com/socket/status
+- **Admin App**: https://shopchat-new.indigenservices.com
+- **Widget API**: https://shopchat-new.indigenservices.com/api/chat/message
+- **Widget Loader**: https://shopchat-new.indigenservices.com/widget-loader.js
+- **Health Check**: https://shopchat-new.indigenservices.com/health
+- **Socket Status**: https://shopchat-new.indigenservices.com/socket/status
 
 ### Shopify Integration
 - **Store**: volter-store.myshopify.com
@@ -153,11 +153,11 @@ shopchat-AI-shopify/
 ```bash
 SHOPIFY_API_KEY=***
 SHOPIFY_API_SECRET=***
-SHOPIFY_APP_URL=https://shopchatai.indigenservices.com
+SHOPIFY_APP_URL=https://shopchat-new.indigenservices.com
 GEMINI_API_KEY=***
 DATABASE_URL=file:./data/production.sqlite
 SCOPES=write_products,read_orders,read_customers
-HOST=shopchatai.indigenservices.com
+HOST=shopchat-new.indigenservices.com
 PORT=3000
 ```
 
@@ -270,13 +270,13 @@ sqlite3 data/production.sqlite "SELECT COUNT(*) FROM ChatMessage;"
 ### Health Checks
 ```bash
 # API health
-curl https://shopchatai.indigenservices.com/health
+curl https://shopchat-new.indigenservices.com/health
 
 # Socket.IO status
-curl https://shopchatai.indigenservices.com/socket/status
+curl https://shopchat-new.indigenservices.com/socket/status
 
 # Server response time
-curl -w "@-" -o /dev/null -s https://shopchatai.indigenservices.com/health <<'EOF'
+curl -w "@-" -o /dev/null -s https://shopchat-new.indigenservices.com/health <<'EOF'
 time_total: %{time_total}s
 EOF
 ```
