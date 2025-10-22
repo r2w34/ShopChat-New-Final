@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  shopchat-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shopchat-new
+    restart: unless-stopped
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=production
+      - PORT=3003
+      - HOST=https://shopchat-new.indigenservices.com
+      - SHOPIFY_APP_URL=https://shopchat-new.indigenservices.com
+      - DATABASE_URL=file:/app/data/production.sqlite
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./prisma:/app/prisma
+      - ./extensions:/app/extensions
+    networks:
+      - shopchat-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  nginx:
+    image: nginx:alpine
+    container_name: shopchat-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - /var/log/nginx:/var/log/nginx
+    depends_on:
+      - shopchat-app
+    networks:
+      - shopchat-network
+
+networks:
+  shopchat-network:
+    driver: bridge
+
+volumes:
+  app-data:
