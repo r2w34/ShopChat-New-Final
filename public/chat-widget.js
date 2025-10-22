@@ -99,6 +99,7 @@
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            shop: this.config.shop,
             customerEmail: this.config.customerEmail,
             customerName: this.config.customerName,
             channel: 'widget',
