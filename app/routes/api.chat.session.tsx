@@ -58,6 +58,9 @@ export async function action({ request }: ActionFunctionArgs) {
         where: { storeId: store.id },
       });
 
+      // Generate unique session token
+      const sessionToken = `${store.id}_${Date.now()}_${Math.random().toString(36).substring(2, 15)}`;
+
       // Create new chat session
       const session = await db.chatSession.create({
         data: {
@@ -67,6 +70,7 @@ export async function action({ request }: ActionFunctionArgs) {
           channel: channel || 'widget',
           language: language || 'en',
           status: 'active',
+          sessionToken: sessionToken,
           metadata: metadata ? JSON.stringify(metadata) : null,
         },
       });
