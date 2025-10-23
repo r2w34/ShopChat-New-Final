@@ -1,6 +1,6 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "cd129da562757dce12515300f4dc8fbb"
+client_id = "c3bbfd4c456bb19a81aac204f238be0b"
 name = "ShopChat AI Chatbot"
 application_url = "https://shopchat-new.indigenservices.com"
 embedded = true
