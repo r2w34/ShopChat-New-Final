@@ -14,7 +14,8 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   try {
-    // authenticate.webhook() automatically validates HMAC
+    // authenticate.webhook() automatically validates HMAC signature
+    // This uses the SHOPIFY_API_SECRET from .env to verify the webhook is authentic
     // If HMAC is invalid, it will throw an error
     const { shop, payload, topic } = await authenticate.webhook(request);
 
@@ -24,21 +25,16 @@ export async function action({ request }: ActionFunctionArgs) {
       timestamp: new Date().toISOString(),
     });
 
-    // Route to appropriate handler based on topic
-    switch (topic) {
-      case "CUSTOMERS_DATA_REQUEST":
-        return await handleCustomersDataRequest(shop, payload);
-      
-      case "CUSTOMERS_REDACT":
-        return await handleCustomersRedact(shop, payload);
-      
-      case "SHOP_REDACT":
-        return await handleShopRedact(shop, payload);
-      
-      default:
-        console.log(`⚠️ Unhandled webhook topic: ${topic}`);
-        return json({ success: true, message: "Webhook received" }, { status: 200 });
-    }
+    // Acknowledge receipt immediately with 200 OK (Shopify requirement)
+    // Process webhook asynchronously to avoid timeout (5 second limit)
+    setImmediate(() => {
+      processWebhookAsync(shop, topic, payload).catch(err => {
+        console.error("❌ Async webhook processing error:", err);
+      });
+    });
+
+    // Return 200 OK immediately (< 1 second response time)
+    return json({ received: true }, { status: 200 });
     
   } catch (error: any) {
     console.error("❌ Error processing webhook:", {
@@ -70,6 +66,31 @@ export async function action({ request }: ActionFunctionArgs) {
       { success: false, error: "Internal server error" }, 
       { status: 500 }
     );
+  }
+}
+
+// Async webhook processor (runs after 200 OK is sent)
+async function processWebhookAsync(shop: string, topic: string, payload: any) {
+  try {
+    switch (topic) {
+      case "CUSTOMERS_DATA_REQUEST":
+        await handleCustomersDataRequest(shop, payload);
+        break;
+      
+      case "CUSTOMERS_REDACT":
+        await handleCustomersRedact(shop, payload);
+        break;
+      
+      case "SHOP_REDACT":
+        await handleShopRedact(shop, payload);
+        break;
+      
+      default:
+        console.log(`⚠️ Unhandled webhook topic: ${topic}`);
+    }
+  } catch (error) {
+    console.error(`❌ Error processing ${topic} webhook:`, error);
+    // Error is logged but doesn't affect the 200 OK already sent
   }
 }
 
@@ -119,8 +140,6 @@ async function handleCustomersDataRequest(shop: string, payload: any) {
 
     // Data email sending is handled in webhooks.customers.data_request.tsx
   }
-
-  return json({ success: true }, { status: 200 });
 }
 
 // GDPR: Customer Data Deletion Handler
@@ -164,8 +183,6 @@ async function handleCustomersRedact(shop: string, payload: any) {
       messagesDeleted: deletedMessages,
     });
   }
-
-  return json({ success: true }, { status: 200 });
 }
 
 // GDPR: Shop Data Deletion Handler
@@ -233,8 +250,6 @@ async function handleShopRedact(shop: string, payload: any) {
       faqsDeleted: faqsResult.count,
     });
   }
-
-  return json({ success: true }, { status: 200 });
 }
 
 // Reject non-POST requests
